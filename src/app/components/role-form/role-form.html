@@ -1,0 +1,23 @@
+<div class="rounded-md mt-5 p-5">
+  <form (ngSubmit)="add()">
+    <mat-form-field class="w-full">
+      <mat-label>Role Name</mat-label>
+      <input
+        matInput
+        name="name"
+        [(ngModel)]="role.roleName"
+        placeholder="Role Name required"
+        required>
+
+      <mat-error *ngIf="!role.roleName">
+        Role Name is Required.
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="message" class="text-base text-red-500 mt-2">
+      {{ message }}
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">Add Role</button>
+  </form>
+</div>

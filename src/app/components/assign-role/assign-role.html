@@ -1,0 +1,21 @@
+<div class="form-container">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Usuario</mat-label>
+    <mat-select [(value)]="selectedUserId">
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{ user.fullName }} ({{ user.email }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Rol</mat-label>
+    <mat-select [(value)]="selectedRoleId">
+      <mat-option *ngFor="let role of roles" [value]="role.id">
+        {{ role.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="assignRole()">Asignar Rol</button>
+</div>

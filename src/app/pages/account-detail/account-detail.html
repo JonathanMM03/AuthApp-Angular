@@ -1,0 +1,57 @@
+<div class="h-screen flex items-center"> 
+   <div class="container mx-auto my8 p-8 bg-white shadow-md rounded-md max-w-md"> 
+     <div class="flex justify-between items-center mb-4">
+       <button mat-icon-button routerLink="/" aria-label="Back to home">
+         <mat-icon>arrow_back</mat-icon>
+       </button>
+       <h1 class="text-3xl text-gray-600 font-bold text-center flex-grow"> 
+         Account Detail 
+       </h1>
+       <ng-container *ngIf="accountDetail$ | async as userTemp">
+         <button *ngIf="isOwnProfile(userTemp)" mat-mini-fab color="primary" (click)="openChangePasswordDialog()" 
+            aria-label="Change password" class="change-password-button" matTooltip="Change Password">
+           <mat-icon>lock</mat-icon>
+         </button>
+       </ng-container>
+     </div> 
+     <div *ngIf="accountDetail$ | async as user; else loading"> 
+       <div class="text-center"> 
+         <div class="rounded-full bg-blue-500 my-4 text-4xl w-20 h-20 inline-flex items-center justify-center mx-auto text-white"> 
+           {{ user.fullName && user.fullName.length > 0 ? (user.fullName[0] | uppercase) : 'U' }} 
+         </div> 
+       </div> 
+       <hr class="my-4 border-slate-400"> 
+ 
+       <div class="space-y-2"> 
+         <div class="flex justify-between"> 
+           <span class="text-gray-500">Full Name</span> 
+           <span class="font-medium">{{ user.fullName || '-' }}</span> 
+         </div> 
+         <div class="flex justify-between"> 
+           <span class="text-gray-500">Email</span> 
+           <span class="font-medium">{{ user.email || '-' }}</span> 
+         </div> 
+         <div class="flex justify-between"> 
+           <span class="text-gray-500">Roles</span> 
+           <span class="font-medium">
+             <span *ngIf="user.roles && user.roles.length > 0">{{ user.roles }}</span>
+             <span *ngIf="!user.roles || user.roles.length === 0">-</span>
+           </span> 
+         </div> 
+         <div class="flex justify-between"> 
+           <span class="text-gray-500">Phone</span> 
+           <span class="font-medium">{{ user.phone || '-' }}</span> 
+         </div> 
+         <div class="flex justify-between"> 
+           <span class="text-gray-500">Access Failed Count</span> 
+           <span class="font-medium">{{ user.accessFailedCount !== undefined ? user.accessFailedCount : '-' }}</span> 
+         </div> 
+       </div> 
+     </div> 
+     <ng-template #loading>
+       <div class="text-center p-8">
+         <p>Loading user details...</p>
+       </div>
+     </ng-template>
+   </div> 
+ </div>

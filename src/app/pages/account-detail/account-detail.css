@@ -1,0 +1,34 @@
+/* Account detail styles */
+.container {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-full {
+    transition: all 0.3s ease;
+}
+
+.rounded-full:hover {
+    transform: scale(1.05);
+}
+
+.mat-icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.container {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.change-password-button {
+    transition: all 0.3s ease;
+}
+
+.change-password-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

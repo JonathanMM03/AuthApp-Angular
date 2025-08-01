@@ -1,0 +1,26 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full border-collapse">
+    <thead>
+      <tr class="bg-gray-100 text-left text-sm font-semibold">
+        <th class="px-6 py-3 border-b">Name</th>
+        <th class="px-6 py-3 border-b">Users</th>
+        <th class="px-6 py-3 border-b text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles" class="text-sm border-b hover:bg-gray-50">
+        <td class="px-6 py-3">{{ role.name }}</td>
+        <td class="px-6 py-3">{{ role.totalUsers }}</td>
+        <td class="px-6 py-3 text-center">
+          <button mat-icon-button color="warn" (click)="deleteRole(role.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="roles.length === 0" class="text-center text-gray-500 py-5">
+    No roles found.
+  </div>
+</div>
