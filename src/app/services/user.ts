@@ -13,24 +13,20 @@ export class User {
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<UserModel[]> {
-    // Intentamos con el endpoint 'Account/all'
     return this.http.get<any[]>(`${this.apiUrl}Account/all`).pipe(
       catchError((error: any) => {
-        // Si falla, intentamos con 'Account/users'
         if (error.status === 404) {
           return this.http.get<any[]>(`${this.apiUrl}Account/users`);
         }
         throw error;
       }),
       catchError((error: any) => {
-        // Si ambos fallan, intentamos con 'Account'
         if (error.status === 404) {
           return this.http.get<any[]>(`${this.apiUrl}Account`);
         }
         throw error;
       }),
       map((response: any) => {
-        // Manejar diferentes formatos de respuesta
         const users = Array.isArray(response) ? response : 
                      (response.users ? response.users : 
                      (response.data ? response.data : []));
