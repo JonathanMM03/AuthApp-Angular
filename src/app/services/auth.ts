@@ -93,14 +93,11 @@ export class Auth {
   }
 
   getUserById(id: string): Observable<any> {
-    // Try the user details endpoint with different possible paths
     return this.http.get<any>(`${this.apiUrl}Account/${id}`).pipe(
       catchError((error: any) => {
         if (error.status === 404) {
-          // If the first endpoint fails with 404, try an alternative endpoint
           return this.http.get<any>(`${this.apiUrl}Account/details/${id}`).pipe(
             catchError((innerError: any) => {
-              // If both fail, try using the user details from the token
               const userDetail = this.getUserDetail();
               if (userDetail && userDetail.id === id) {
                 return of(userDetail);
